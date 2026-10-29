@@ -12,20 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/autores")
 public class AutorController {
 
-    // GET /autores -> link do menu, leva direto ao formulário
     @GetMapping
     public String inicio() {
         return "redirect:/autores/novo";
     }
 
-    // GET /autores/novo -> abre o formulário
     @GetMapping("/novo")
     public String novoAutor(Model model) {
         model.addAttribute("autor", new Autor());
         return "autores/form";
     }
 
-    // POST /autores -> recebe os dados do formulário
     @PostMapping
     public String cadastrarAutor(@ModelAttribute Autor autor, Model model) {
         model.addAttribute("autor", autor);

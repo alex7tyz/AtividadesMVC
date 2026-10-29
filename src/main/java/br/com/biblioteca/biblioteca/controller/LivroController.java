@@ -29,14 +29,12 @@ public class LivroController {
         return "livros/exibir";
     }
 
-    // GET /livros/novo -> abre o formulário
     @GetMapping("/novo")
     public String novoLivro(Model model) {
         model.addAttribute("livro", new Livro());
         return "livros/form";
     }
 
-    // POST /livros -> recebe os dados do formulário
     @PostMapping
     public String cadastrarLivro(@ModelAttribute Livro livro, Model model) {
         model.addAttribute("livro", livro);
