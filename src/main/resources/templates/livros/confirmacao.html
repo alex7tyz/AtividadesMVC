@@ -6,14 +6,12 @@
     <link rel="stylesheet" th:href="@{/css/estilo.css}">
 </head>
 <body>
-
 <header>
     <h1>Sistema de Biblioteca</h1>
 </header>
 
 <main>
     <h2>Livro cadastrado!</h2>
-
     <p><strong>Título:</strong> <span th:text="${livro.titulo}"></span></p>
     <p><strong>Autor:</strong> <span th:text="${livro.autor}"></span></p>
     <p><strong>ISBN:</strong> <span th:text="${livro.isbn}"></span></p>
@@ -21,6 +19,5 @@
     <p><a th:href="@{/livros/novo}">Cadastrar outro livro</a></p>
     <p><a th:href="@{/livros}">Voltar ao início</a></p>
 </main>
-
 </body>
 </html>

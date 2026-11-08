@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Autores</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header>
+    <h1>Sistema de Biblioteca</h1>
+</header>
+<main>
+    <h2>Autores cadastrados</h2>
+    <p><a th:href="@{/autores/novo}">Cadastrar novo autor</a></p>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nacionalidade</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="autor, status : ${autores}">
+            <td th:text="${autor.nome}"></td>
+            <td th:text="${autor.nacionalidade}"></td>
+            <td>
+                <a th:href="@{/autores/excluir/{indice}(indice=${status.index})}">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

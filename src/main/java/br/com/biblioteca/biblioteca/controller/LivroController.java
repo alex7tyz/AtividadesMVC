@@ -5,28 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/livros")
 public class LivroController {
 
+    private List<Livro> livros = new ArrayList<>();
+
     @GetMapping
-    public String inicio() {
-        return "livros/inicio";
-    }
-
-    @GetMapping("/exibir")
-    public String exibirLivro(Model model) {
-        Livro livro = new Livro();
-        livro.setTitulo("Dom Casmurro");
-        livro.setAutor("Machado de Assis");
-        livro.setIsbn("978-85-00-00000-0");
-
-        model.addAttribute("livro", livro);
-
-        return "livros/exibir";
+    public String listar(Model model) {
+        model.addAttribute("livros", livros);
+        return "livros/lista";
     }
 
     @GetMapping("/novo")
@@ -36,9 +31,15 @@ public class LivroController {
     }
 
     @PostMapping
-    public String cadastrarLivro(@ModelAttribute Livro livro, Model model) {
-        model.addAttribute("livro", livro);
-        return "livros/confirmacao";
+    public String cadastrarLivro(@ModelAttribute Livro livro) {
+        livros.add(livro);
+        return "redirect:/livros";
+    }
+
+    @GetMapping("/excluir/{indice}")
+    public String excluir(@PathVariable int indice) {
+        livros.remove(indice);
+        return "redirect:/livros";
     }
 
 }
