@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Categorias</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+
+<header>
+    <h1>Sistema de Biblioteca</h1>
+</header>
+
+<main>
+    <h2>Categorias cadastradas</h2>
+
+    <p><a th:href="@{/categorias/novo}">Cadastrar nova categoria</a></p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="categoria : ${categorias}">
+            <td th:text="${categoria.nome}"></td>
+            <td th:text="${categoria.descricao}"></td>
+            <td>
+                <a th:href="@{/categorias/excluir/{id}(id=${categoria.id})}">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>
